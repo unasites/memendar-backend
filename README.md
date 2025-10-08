@@ -161,11 +161,13 @@ pnpm start
 
 ## 📜 Licenza
 
-ISC
+Questo progetto è rilasciato sotto licenza Apache License 2.0. Vedi il file [LICENSE](LICENSE) per maggiori dettagli.
+
+Copyright 2025 UnaSites
 
 ## 👤 Autore
 
-Progetto sviluppato per ITS Incom
+Progetto sviluppato da [UnaSites](https://github.com/unasites)
 
 ## 🤝 Contribuire
 
