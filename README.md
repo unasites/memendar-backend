@@ -1,93 +1,93 @@
 # Memendar Backend
 
-Backend API per l'applicazione Memendar - un'applicazione di calendario per meme che permette agli utenti di condividere e votare meme organizzati per mese e anno.
+Backend API for the Memendar application - a meme calendar app that allows users to share and vote on memes organized by month and year.
 
-## 📋 Descrizione
+## 📋 Description
 
-Memendar Backend è un'API REST sviluppata con Node.js ed Express che gestisce l'autenticazione degli utenti, la gestione delle stanze (room), e la pubblicazione e votazione di meme attraverso un calendario mensile.
+Memendar Backend is a REST API developed with Node.js and Express that handles user authentication, room management, and the publishing and voting of memes through a monthly calendar.
 
-## 🚀 Tecnologie Utilizzate
+## 🚀 Technologies Used
 
-- **Node.js** - Runtime JavaScript
-- **Express** - Framework web
-- **MongoDB** - Database NoSQL
-- **Mongoose** - ODM per MongoDB
-- **Passport.js** - Autenticazione
-- **Express Session** - Gestione sessioni
-- **Connect-Mongo** - Store sessioni su MongoDB
-- **Express Validator** - Validazione dati
-- **bcrypt** - Hashing password
+- **Node.js** - JavaScript runtime
+- **Express** - Web framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - ODM for MongoDB
+- **Passport.js** - Authentication
+- **Express Session** - Session management
+- **Connect-Mongo** - MongoDB session store
+- **Express Validator** - Data validation
+- **bcrypt** - Password hashing
 - **CORS** - Cross-Origin Resource Sharing
 
-## 📁 Struttura del Progetto
+## 📁 Project Structure
 
 ```
 memendar-backend/
-├── index.mjs                 # Entry point dell'applicazione
-├── package.json              # Dipendenze e script
+├── index.mjs                 # Application entry point
+├── package.json              # Dependencies and scripts
 ├── mongoose/
-│   └── schemas/             # Schemi Mongoose
-│       ├── Calendar.mjs     # Schema calendario
-│       ├── Meme.mjs         # Schema meme
-│       ├── Room.mjs         # Schema stanze
-│       └── User.mjs         # Schema utenti
+│   └── schemas/             # Mongoose schemas
+│       ├── Calendar.mjs     # Calendar schema
+│       ├── Meme.mjs         # Meme schema
+│       ├── Room.mjs         # Room schema
+│       └── User.mjs         # User schema
 ├── routes/
-│   ├── index.mjs           # Router principale
-│   └── users.mjs           # Route utenti
-├── strategies/             # Strategie Passport.js
+│   ├── index.mjs           # Main router
+│   └── users.mjs           # User routes
+├── strategies/             # Passport.js strategies
 └── utils/
-    ├── helpers.mjs         # Funzioni di utilità
-    └── validationSchema.mjs # Schemi di validazione
+    ├── helpers.mjs         # Utility functions
+    └── validationSchema.mjs # Validation schemas
 ```
 
-## 🔧 Prerequisiti
+## 🔧 Prerequisites
 
-- **Node.js** (versione 18 o superiore)
-- **pnpm** (versione 10.8.1 o superiore)
-- **MongoDB** (in esecuzione su localhost:27017)
+- **Node.js** (version 18 or higher)
+- **pnpm** (version 10.8.1 or higher)
+- **MongoDB** (running on localhost:27017)
 
-## 📦 Installazione
+## 📦 Installation
 
-1. Clona il repository:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/unasites/memendar-backend.git
 cd memendar-backend
 ```
 
-2. Installa le dipendenze con pnpm:
+2. Install dependencies with pnpm:
 
 ```bash
 pnpm install
 ```
 
-3. Assicurati che MongoDB sia in esecuzione:
+3. Make sure MongoDB is running:
 
 ```bash
-# Su Windows (se installato come servizio)
+# On Windows (if installed as a service)
 net start MongoDB
 
-# Oppure avvia manualmente
+# Or start manually
 mongod
 ```
 
-## 🏃 Avvio dell'Applicazione
+## 🏃 Running the Application
 
-### Modalità Sviluppo (con nodemon)
+### Development Mode (with nodemon)
 
 ```bash
 pnpm start
 ```
 
-### Modalità Produzione
+### Production Mode
 
 ```bash
 node index.mjs
 ```
 
-Il server sarà disponibile su `http://localhost:3000`
+The server will be available at `http://localhost:3000`
 
-## 🗄️ Modelli Dati
+## 🗄️ Data Models
 
 ### User
 
@@ -110,87 +110,87 @@ Il server sarà disponibile su `http://localhost:3000`
 
 ### Room
 
-Schema per la gestione delle stanze/gruppi
+Schema for room/group management
 
 ### Calendar
 
-Schema per l'organizzazione del calendario
+Schema for calendar organization
 
-## 🔐 Autenticazione
+## 🔐 Authentication
 
-L'applicazione utilizza:
+The application uses:
 
-- **Passport.js** per la gestione dell'autenticazione
-- **Express Session** per mantenere le sessioni utente
-- **bcrypt** per l'hashing sicuro delle password
-- **MongoDB** come store per le sessioni
+- **Passport.js** for authentication management
+- **Express Session** to maintain user sessions
+- **bcrypt** for secure password hashing
+- **MongoDB** as session store
 
 ## 🌐 CORS
 
-Il server è configurato per accettare richieste da qualsiasi origine (`*`) con i seguenti metodi:
+The server is configured to accept requests from any origin (`*`) with the following methods:
 
 - GET
 - POST
 - PUT
 - DELETE
 
-**Nota**: In produzione, è consigliato limitare le origini consentite.
+**Note**: In production, it is recommended to limit allowed origins.
 
-## 🔒 Configurazione Sessioni
+## 🔒 Session Configuration
 
-- **Secret**: Configurato (da modificare in produzione)
-- **Cookie maxAge**: 24 ore
-- **Secure**: false (da impostare a true in produzione con HTTPS)
+- **Secret**: Configured (should be changed in production)
+- **Cookie maxAge**: 24 hours
+- **Secure**: false (should be set to true in production with HTTPS)
 - **HttpOnly**: true
 - **SameSite**: lax
 
 ## 📝 API Endpoints
 
-Le route sono organizzate nel modulo `routes/`:
+Routes are organized in the `routes/` module:
 
-- `/users` - Gestione utenti e autenticazione
-- Altre route definite in `routes/index.mjs`
+- `/users` - User management and authentication
+- Other routes defined in `routes/index.mjs`
 
-## 🛠️ Sviluppo
+## 🛠️ Development
 
-Il progetto utilizza **nodemon** per il reload automatico durante lo sviluppo.
+The project uses **nodemon** for automatic reload during development.
 
 ```bash
 pnpm start
 ```
 
-## 📜 Licenza
+## 📜 License
 
-Questo progetto è rilasciato sotto licenza Apache License 2.0. Vedi il file [LICENSE](LICENSE) per maggiori dettagli.
+This project is released under the Apache License 2.0. See the [LICENSE](LICENSE) file for more details.
 
 Copyright 2025 UnaSites
 
-## 👤 Autore
+## 👤 Author
 
-Progetto sviluppato da [UnaSites](https://github.com/unasites)
+Project developed by [UnaSites](https://github.com/unasites)
 
-## 🤝 Contribuire
+## 🤝 Contributing
 
-1. Fork il progetto
-2. Crea un branch per la tua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit le tue modifiche (`git commit -m 'Add some AmazingFeature'`)
-4. Push al branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## ⚠️ Note di Sicurezza
+## ⚠️ Security Notes
 
-Prima di andare in produzione:
+Before going to production:
 
-- [ ] Cambia il secret della sessione con una chiave sicura
-- [ ] Imposta `secure: true` nei cookie se usi HTTPS
-- [ ] Configura CORS per accettare solo origini specifiche
-- [ ] Usa variabili d'ambiente per le configurazioni sensibili
-- [ ] Implementa rate limiting
-- [ ] Aggiungi logging appropriato
+- [ ] Change the session secret to a secure key
+- [ ] Set `secure: true` in cookies if using HTTPS
+- [ ] Configure CORS to accept only specific origins
+- [ ] Use environment variables for sensitive configurations
+- [ ] Implement rate limiting
+- [ ] Add appropriate logging
 
-## 🐛 Bug e Problemi
+## 🐛 Bugs and Issues
 
-Per segnalare bug o problemi, apri una issue su GitHub.
+To report bugs or issues, open an issue on GitHub.
 
 ---
 
