@@ -12,36 +12,36 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 mongoose
-  .connect("mongodb://localhost:27017/memendar")
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
-  });
+    .connect("mongodb://localhost:27017/memendar")
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch(error => {
+        console.error("MongoDB connection error:", error);
+    });
 app.use(express.json());
 
 app.use(cors(corsOptions));
 
 app.use(
-  session({
-    secret: "porcaccio",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false,
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24,
-      sameSite: "lax",
-    },
-    store: MongoStore.create({ client: mongoose.connection.getClient() }),
-  })
+    session({
+        secret: "porcaccio",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            secure: false,
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24,
+            sameSite: "lax",
+        },
+        store: MongoStore.create({ client: mongoose.connection.getClient() }),
+    })
 );
 
 app.use(cookieParser());
@@ -49,8 +49,8 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(routes)
+app.use("/api", routes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
