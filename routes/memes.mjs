@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkSchema, validationResult, matchedData } from "express-validator";
-import { Meme } from "../mongoose/schemas/Meme.mjs";
+import Meme from "../mongoose/schemas/Meme.mjs";
 import { createMemesValidationSchema } from "../utils/validationSchema.mjs";
 
 const memeRouter = Router();

@@ -54,3 +54,27 @@ export const createMemesValidationSchema = {
         notEmpty: { errorMessage: "Year is required" },
     },
 };
+
+export const createRoomValidationSchema = {
+    name: {
+        isLength: {
+            options: { min: 3, max: 50 },
+            errorMessage: "Room name must be between 3 and 50 characters",
+        },
+        notEmpty: { errorMessage: "Room name is required" },
+        isString: { errorMessage: "Room name must be a string" },
+    },
+    ownerId: {
+        isMongoId: { errorMessage: "Owner ID must be a valid MongoDB ObjectId" },
+        notEmpty: { errorMessage: "Owner ID is required" },
+        isString: { errorMessage: "Owner ID must be a string" },
+    },
+    roomCode: {
+        isLength: {
+            options: { min: 8, max: 8 },
+            errorMessage: "Room code must be exactly 8 characters",
+        },
+        notEmpty: { errorMessage: "Room code is required" },
+        isString: { errorMessage: "Room code must be a string" },
+    },
+};

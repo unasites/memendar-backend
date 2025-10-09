@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkSchema, validationResult, matchedData } from "express-validator";
-import { User } from "../mongoose/schemas/User.mjs";
+import User from "../mongoose/schemas/User.mjs";
 import { createUserValidationSchema } from "../utils/validationSchema.mjs";
 import { hashPassword } from "../utils/helpers.mjs";
 
