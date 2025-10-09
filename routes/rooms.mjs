@@ -1,6 +1,8 @@
 import { Router } from "express";
 import Room from "../mongoose/schemas/Room.mjs";
 import { generateUniqueCode } from "../utils/helpers.mjs";
+import { checkSchema, validationResult } from "express-validator";
+import { createRoomValidationSchema } from "../utils/validationSchema.mjs";
 
 const roomRouter = Router();
 
@@ -14,13 +16,14 @@ roomRouter.get("/", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-roomRouter.post("/", async (req, res) => {
+roomRouter.post("/", checkSchema(createRoomValidationSchema), async (req, res) => {
+    const results = validationResult(req);
     const { name, ownerId } = req.body;
 
     let roomCode = generateUniqueCode();
 
-    if (!name || !ownerId || !roomCode) {
-        return res.status(400).json({ error: "name, ownerId, and roomCode are required" });
+    if (!results.isEmpty()) {
+        return res.status(400).json({ errors: results.array() });
     }
     try {
         const rooms = await Room.find();
