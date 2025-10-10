@@ -2,6 +2,7 @@ import { Router } from "express";
 import { checkSchema, validationResult, matchedData } from "express-validator";
 import Meme from "../mongoose/schemas/Meme.mjs";
 import { createMemesValidationSchema } from "../utils/validationSchema.mjs";
+import Room from "../mongoose/schemas/Room.mjs";
 
 const memeRouter = Router();
 
@@ -24,6 +25,17 @@ memeRouter.post("/", checkSchema(createMemesValidationSchema), async (req, res) 
     }
 
     const data = matchedData(req);
+
+    const room = await Room.findById(data.roomId);
+
+    if (!room) {
+        return res.status(404).json({ error: "Room not found" });
+    }
+
+    if (data.userId && !room.ownerId.includes(data.userId)) {
+        return res.status(403).json({ error: "User is not the owner of the room" });
+    }
+
     const newMeme = new Meme(data);
 
     try {

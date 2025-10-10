@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
     password: { type: mongoose.Schema.Types.String, required: true },
     createdAt: { type: mongoose.Schema.Types.Date, default: Date.now },
     avatarUrl: { type: mongoose.Schema.Types.String, default: "" },
-    roomIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Room" }],
-    role: { type: mongoose.Schema.Types.String, enum: ["user", "owner", "admin"], default: "user" },
+    roomIds: [{ type: mongoose.Schema.Types.String, ref: "Room" }],
+    role: { type: mongoose.Schema.Types.String, enum: ["user", "admin"], default: "user" },
 });
 
 const User = mongoose.model("User", userSchema);

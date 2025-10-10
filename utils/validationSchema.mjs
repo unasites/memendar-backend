@@ -37,6 +37,11 @@ export const createMemesValidationSchema = {
         notEmpty: { errorMessage: "Room ID is required" },
         isString: { errorMessage: "Room ID must be a string" },
     },
+    userId: {
+        isMongoId: { errorMessage: "User ID must be a valid MongoDB ObjectId" },
+        notEmpty: { errorMessage: "User ID is required" },
+        isString: { errorMessage: "User ID must be a string" },
+    },
     month: {
         optional: true,
         isInt: {
