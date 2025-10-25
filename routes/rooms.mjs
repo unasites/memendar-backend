@@ -17,6 +17,7 @@ roomRouter.get("/", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 roomRouter.post("/", checkSchema(createRoomValidationSchema), async (req, res) => {
     const results = validationResult(req);
     const { name, ownerId } = req.body;

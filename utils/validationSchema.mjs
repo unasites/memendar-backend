@@ -37,11 +37,6 @@ export const createMemesValidationSchema = {
         notEmpty: { errorMessage: "Room ID is required" },
         isString: { errorMessage: "Room ID must be a string" },
     },
-    userId: {
-        isMongoId: { errorMessage: "User ID must be a valid MongoDB ObjectId" },
-        notEmpty: { errorMessage: "User ID is required" },
-        isString: { errorMessage: "User ID must be a string" },
-    },
     month: {
         optional: true,
         isInt: {
@@ -77,25 +72,63 @@ export const createRoomValidationSchema = {
 };
 
 export const createCalendarValidationSchema = {
-    month: {
-        isInt: {
-            options: { min: 1, max: 12 },
-            errorMessage: "Month must be an integer between 1 and 12",
+    memes: {
+        isArray: { errorMessage: "Memes must be an array" },
+        notEmpty: { errorMessage: "Memes are required" },
+        meme: {
+            isMongoId: { errorMessage: "Meme ID must be a valid MongoDB ObjectId" },
+            notEmpty: { errorMessage: "Meme ID is required" },
+            isString: { errorMessage: "Meme ID must be a string" },
         },
-        notEmpty: { errorMessage: "Month is required" },
-        isString: { errorMessage: "Month must be a string" },
-    },
-    year: {
-        isInt: {
-            options: { min: 2025 },
-            errorMessage: "Year must be an integer greater than or equal to 2025",
+        month: {
+            isInt: {
+                options: { min: 1, max: 12 },
+                errorMessage: "Month must be an integer between 1 and 12",
+            },
+            notEmpty: { errorMessage: "Month is required" },
         },
-        notEmpty: { errorMessage: "Year is required" },
-        isString: { errorMessage: "Year must be a string" },
+        year: {
+            isInt: {
+                options: { min: 2025 },
+                errorMessage: "Year must be an integer between 2025 and 2100",
+            },
+            notEmpty: { errorMessage: "Year is required" },
+        },
     },
+
     roomId: {
         isMongoId: { errorMessage: "Room ID must be a valid MongoDB ObjectId" },
         notEmpty: { errorMessage: "Room ID is required" },
         isString: { errorMessage: "Room ID must be a string" },
+    },
+};
+
+export const createEventValidationSchema = {
+    calendarId: {
+        isMongoId: { errorMessage: "Calendar ID must be a valid MongoDB ObjectId" },
+        notEmpty: { errorMessage: "Calendar ID is required" },
+    },
+    memes: {
+        isArray: { errorMessage: "Memes must be an array" },
+        options: { min: 2, max: 5 },
+        meme: {
+            isMongoId: { errorMessage: "Meme ID must be a valid MongoDB ObjectId" },
+            notEmpty: { errorMessage: "Meme ID is required" },
+            isString: { errorMessage: "Meme ID must be a string" },
+        },
+        year: {
+            isInt: {
+                options: { min: 2025 },
+                errorMessage: "Year must be an integer between 2025",
+            },
+            notEmpty: { errorMessage: "Year is required" },
+        },
+        month: {
+            isInt: {
+                options: { min: 1, max: 12 },
+                errorMessage: "Month must be an integer between 1 and 12",
+            },
+            notEmpty: { errorMessage: "Month is required" },
+        },
     },
 };

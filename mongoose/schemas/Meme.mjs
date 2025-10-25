@@ -6,8 +6,8 @@ const memeSchema = new mongoose.Schema({
     createdAt: { type: mongoose.Schema.Types.Date, default: Date.now },
     roomId: { type: mongoose.Schema.Types.ObjectId, ref: "Room", required: true },
     voteCount: { type: mongoose.Schema.Types.Number, default: 0 },
-    month: { type: mongoose.Schema.Types.Number },
-    year: { type: mongoose.Schema.Types.Number },
+    month: { type: mongoose.Schema.Types.String, required: true },
+    year: { type: mongoose.Schema.Types.String, required: true },
 });
 
 const Meme = mongoose.model("Meme", memeSchema);
